@@ -7,6 +7,12 @@
   pointer-events: none;
 }
 
+@font-face {
+  font-family: "NotoSansThai";
+  src: url('./fonts/NotoSansThai.ttf') format('truetype');
+  font-weight: normal;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -32,7 +38,84 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.navbar {
+  background-color: #71cc00;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  padding: 0px 5%;
+  font-size: small;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.navbar-title {
+  color: black;
+}
+
+.navbar-items {
+  font-size: xx-small;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.navbar-item {
+  margin: auto 10px;
+}
+
+body {
+  font-family: "NotoSansThai";
+  color: #0B1215;
+}
+
+.banner {
+  background: linear-gradient(45deg, rgba(113, 204, 0, 0.3) 0%, rgba(90, 242, 251, 0.3) 100%);
+  display: flex;
+  flex-direction: column;
+  font-size: x-large;
+  padding: 20px 25% 20px 25%;
+}
+
+.banner-title {
+  margin: 0px;
+}
+
+.badge {
+  border: 1px solid #0B1215;
+  border-radius: 9999px;
+  text-align: center;
+  text-decoration: none;
+  font-size: medium;
+  display: inline-block;
+  margin: 4px 2px;
+  padding: 3px 8px;
+  cursor: pointer;
+}
+
+.canvas {
+  /* background: #ffffff; */
+  display: flex;
+  flex-direction: column;
+  font-size: x-large;
+  padding: 20px 25% 20px 25%;
+}
+
+.chart-area {
+  width: auto;
+}
+
+.chart-title {
+  font-size: 1.5 em;
+  margin: 2px;
+}
+
+.chart-title-line {
+  border: 2px solid #71cc00;
 }
