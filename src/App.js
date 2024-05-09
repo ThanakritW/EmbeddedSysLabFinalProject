@@ -5,7 +5,7 @@ import './App.css';
 
 function App() {
   const now = new Date();
-  return (
+  return (  
     <div>
       <div className="navbar">
         <h1 className="navbar-title">Embedded System Laboratory</h1>
