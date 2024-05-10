@@ -1,19 +1,13 @@
 import "./App.css";
 import { LightChart } from "./components/lightChart";
+import { Navbar } from "./components/navbar";
 import { PassageChart } from "./components/passageChart";
 
 function App() {
   const now = new Date();
   return (
     <div>
-      <div className="navbar">
-        <h1 className="navbar-title">Embedded System Laboratory</h1>
-        <div className="navbar-items">
-          <h1 className="navbar-item">
-            {now.toLocaleDateString()} {now.toLocaleTimeString()}
-          </h1>
-        </div>
-      </div>
+      <Navbar />
       <div className="banner">
         <h1 className="banner-title">กรุงเทพฯ ต้องสว่าง</h1>
         <div>
