@@ -7,7 +7,17 @@ const lineOptions = {
     y: {
       min: 0,
       max: 100,
+      title: {
+        display: true,
+        text: "Light%"
+      }
     },
+    x: {
+      title: {
+        display: true,
+        text: "Time Passed (sec)"
+      }
+    }
   },
 };
 
@@ -15,8 +25,8 @@ const rawData = {
   labels: ["0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55", "60"],
   datasets: [
     {
-      label: "PM2.5",
-      data: [],
+      label: "Light",
+      data: [5, 10, 15, 20, 25, 30, 35, 40],
       fill: true,
       backgroundColor: "rgb(113, 204, 0, 0.3)",
       borderColor: "rgb(113, 204, 0)",
