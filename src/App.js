@@ -1,6 +1,3 @@
-import logo from "./logo.svg";
-import { Chart as ChartJS, Ticks } from "chart.js/auto";
-import { Line, labels, datasets } from "react-chartjs-2";
 import "./App.css";
 import { LightChart } from "./components/lightChart";
 import { PassageChart } from "./components/passageChart";
