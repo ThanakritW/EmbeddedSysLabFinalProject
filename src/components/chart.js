@@ -1,4 +1,5 @@
 import { Line } from "react-chartjs-2";
+import "chart.js/auto";
 
 /**
  * @typedef ChartProps
@@ -13,6 +14,8 @@ import { Line } from "react-chartjs-2";
  * @returns
  */
 export function Chart({ title, data, lineOptions }) {
+  console.log(`Chart ${title} rerender with data`);
+  console.log(data);
   return (
     <div className="chart-area">
       <h2 className="chart-title">{title}</h2>

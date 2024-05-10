@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import { Chart } from "./chart";
+import { getLight } from "../services/lights";
 
 const lineOptions = {
   scales: {
     y: {
       min: 0,
-      max: 100,
+      max: 1000,
     },
   },
 };
 
-const data = {
+const rawData = {
   labels: [
     "0",
     "5",
@@ -29,7 +30,7 @@ const data = {
   datasets: [
     {
       label: "PM2.5",
-      data: [50, 60, 10.1, 30],
+      data: [],
       fill: true,
       backgroundColor: "rgb(113, 204, 0, 0.3)",
       borderColor: "rgb(113, 204, 0)",
@@ -39,15 +40,34 @@ const data = {
   ],
 };
 
+const FETCH_INTERVAL = 3000;
+
+// TODO: fix chart not update on fetch new data
 export function LightChart() {
-  // const [data, setData] = useState(null);
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     setData();
-  //   };
-  //   fetchData();
-  // }, []);
+  const [data, setData] = useState(rawData);
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await getLight();
+      setData((prev) => {
+        const newData = { ...prev };
+        newData.datasets[0].data = res.map((item) => item.value);
+        return newData;
+      });
+      setCount((count) => count + 1);
+    };
+    fetchData();
+    const interval = setInterval(fetchData, FETCH_INTERVAL);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
   return (
-    <Chart title={"Light (60 sec)"} lineOptions={lineOptions} data={data} />
+    <Chart
+      title={`Light (60 sec)/ ${count}`}
+      lineOptions={lineOptions}
+      data={data}
+    />
   );
 }

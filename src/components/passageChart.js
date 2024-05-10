@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Chart } from "./chart";
+import { getPassage } from "../services/passage";
 
 const lineOptions = {
   scales: {
@@ -10,7 +11,7 @@ const lineOptions = {
   },
 };
 
-const data = {
+const rawData = {
   labels: [
     "0",
     "1",
@@ -77,10 +78,7 @@ const data = {
   datasets: [
     {
       label: "PM2.5",
-      data: [
-        20.9, 18, 17, 17.5, 20.1, 24.8, 29.7, 31.3, 26.6, 19, 15, 14, 14, 16,
-        20, 24.9, 21.9, 13, 10, 11, 11.9, 14, 14, 14,
-      ],
+      data: [],
       fill: true,
       backgroundColor: "rgb(113, 204, 0, 0.3)",
       borderColor: "rgb(113, 204, 0)",
@@ -90,15 +88,27 @@ const data = {
   ],
 };
 
-const title = "Count (60 minutes)";
+const FETCH_INTERVAL = 3000;
 
 export function PassageChart() {
-  // const [data, setData] = useState(null);
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     setData();
-  //   };
-  //   fetchData();
-  // }, []);
-  return <Chart title={title} lineOptions={lineOptions} data={data} />;
+  const [data, setData] = useState(rawData);
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await getPassage();
+      setData((prev) => {
+        const newData = { ...prev };
+        newData.datasets[0].data = res.map((item) => item.value);
+        return newData;
+      });
+    };
+    fetchData();
+    const interval = setInterval(fetchData, FETCH_INTERVAL);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+  return (
+    <Chart title={"Count (60 minutes)"} lineOptions={lineOptions} data={data} />
+  );
 }

@@ -8,17 +8,17 @@ import {
 } from "firebase/firestore";
 import { db } from "../configs/firebase";
 
-export const getLight = async () => {
-  const lightRef = collection(db, "lights");
+export const getPassage = async () => {
+  const passageRef = collection(db, "passage");
 
   const currentTime = new Date();
-  const TIME_RANGE = 5 * 60 * 1000; // 5 minutes
+  const TIME_RANGE = 60 * 60 * 1000; // 60 minutes
   const minRangeTime = new Date(currentTime.getTime() - TIME_RANGE);
   const q = query(
-    lightRef,
+    passageRef,
     where("time", ">=", minRangeTime),
     orderBy("time", "desc"),
-    limit(12)
+    limit(60)
   );
   const querySnapshot = await getDocs(q);
 
@@ -27,7 +27,7 @@ export const getLight = async () => {
     data.push(doc.data());
   });
 
-  console.log("Lights Data: ", data);
+  console.log("Passage Data: ", data);
 
   return data;
 };
