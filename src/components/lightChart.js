@@ -32,6 +32,7 @@ const FETCH_INTERVAL = 3000;
 export function LightChart() {
   const [data, setData] = useState(rawData);
   const [count, setCount] = useState(0);
+  const [key, setKey] = useState(0);
   useEffect(() => {
     const fetchData = async () => {
       const res = await getLight();
@@ -41,6 +42,8 @@ export function LightChart() {
         return newData;
       });
       setCount((count) => count + 1);
+      setKey((key) => (key + 1) % 2);
+
     };
     fetchData();
     const interval = setInterval(fetchData, FETCH_INTERVAL);
@@ -51,7 +54,9 @@ export function LightChart() {
   }, []);
   return (
     <Chart
-      title={`Light (60 sec)/ ${count}`}
+      key={key}
+      title={`Light (60 sec)/ ${count}`
+      }
       lineOptions={lineOptions}
       data={data}
     />

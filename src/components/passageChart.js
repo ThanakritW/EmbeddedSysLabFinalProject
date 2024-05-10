@@ -92,6 +92,7 @@ const FETCH_INTERVAL = 3000;
 
 export function PassageChart() {
   const [data, setData] = useState(rawData);
+  const [key, setKey] = useState(0);
   useEffect(() => {
     const fetchData = async () => {
       const res = await getPassage();
@@ -100,6 +101,7 @@ export function PassageChart() {
         newData.datasets[0].data = res.map((item) => item.value);
         return newData;
       });
+      setKey((key) => (key + 1) % 2);
     };
     fetchData();
     const interval = setInterval(fetchData, FETCH_INTERVAL);
@@ -109,6 +111,6 @@ export function PassageChart() {
     };
   }, []);
   return (
-    <Chart title={"Count (60 minutes)"} lineOptions={lineOptions} data={data} />
+    <Chart key={key} title={"Count (60 minutes)"} lineOptions={lineOptions} data={data} />
   );
 }
