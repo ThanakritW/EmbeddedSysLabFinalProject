@@ -21,7 +21,7 @@ export function Chart({ title, data, lineOptions, enable, toggleHandler }) {
     <div className="chart-area">
       <div className="chart-header">
         <h2 className="chart-title">{title}</h2>
-        <button className="chart-toggler" onClick={toggleHandler}>{enable ? "เปิด" : "ปิด"}</button>
+        <button className={`chart-toggler ${enable ? 'enable' : ''}`} onClick={toggleHandler}>{enable ? "เปิด" : "ปิด"}</button>
       </div>
       <hr className="chart-title-line" />
       <Line options={lineOptions} data={data} />

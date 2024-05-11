@@ -119,3 +119,45 @@ body {
 .chart-title-line {
   border: 2px solid #71cc00;
 }
+
+.chart-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.chart-toggler {
+  margin: auto 0;
+  width: 70px;
+  padding: 5px;
+  font-size: medium;
+  border: #ff4040 solid 3px;
+  border-radius: 0.5em;
+  background: none;
+  cursor: pointer;
+  transition: all 0.1s ease-in;
+}
+
+.chart-toggler:hover {
+  cursor: pointer;
+  background-color: #ff4040;
+  color: whitesmoke;
+}
+
+.chart-toggler.enable {
+  margin: auto 0;
+  width: 70px;
+  padding: 5px;
+  font-size: medium;
+  border: #71cc00 solid 3px;
+  border-radius: 0.5em;
+  background: none;
+  cursor: pointer;
+  transition: all 0.1s ease-in;
+}
+
+.chart-toggler.enable:hover {
+  cursor: pointer;
+  background-color: #71cc00;
+  color: whitesmoke;
+}
