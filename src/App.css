@@ -131,7 +131,7 @@ body {
   width: 70px;
   padding: 5px;
   font-size: medium;
-  border: #ff4040 solid 3px;
+  border: #ec0b43 solid 3px;
   border-radius: 0.5em;
   background: none;
   cursor: pointer;
@@ -140,7 +140,7 @@ body {
 
 .chart-toggler:hover {
   cursor: pointer;
-  background-color: #ff4040;
+  background-color: #ec0b43;
   color: whitesmoke;
 }
 
