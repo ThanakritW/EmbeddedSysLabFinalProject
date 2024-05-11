@@ -15,8 +15,6 @@ import "chart.js/auto";
  * @returns
  */
 export function Chart({ title, data, lineOptions, enable, toggleHandler }) {
-  console.log(`Chart ${title} rerender with data`);
-  console.log(data);
   return (
     <div className="chart-area">
       <div className="chart-header">

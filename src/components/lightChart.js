@@ -48,7 +48,6 @@ export function LightChart() {
   }
   useEffect(() => {
     const fetchData = async () => {
-      console.log(enable);
       if (!enable)
         return;
       const res = await getLight();

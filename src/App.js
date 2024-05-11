@@ -4,7 +4,6 @@ import { Navbar } from "./components/navbar";
 import { PassageChart } from "./components/passageChart";
 
 function App() {
-  const now = new Date();
   return (
     <div>
       <Navbar />
