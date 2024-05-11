@@ -26,7 +26,7 @@ const rawData = {
   datasets: [
     {
       label: "Light",
-      data: [5, 10, 15, 20, 25, 30, 35, 40],
+      data: [],
       fill: true,
       backgroundColor: "rgb(113, 204, 0, 0.3)",
       borderColor: "rgb(113, 204, 0)",
