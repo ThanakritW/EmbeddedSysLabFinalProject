@@ -36,14 +36,21 @@ const rawData = {
   ],
 };
 
-const FETCH_INTERVAL = 3000;
+const FETCH_INTERVAL = 5000;
 
 // TODO: fix chart not update on fetch new data
 export function LightChart() {
   const [data, setData] = useState(rawData);
   const [count, setCount] = useState(0);
+  const [enable, setEnable] = useState(false);
+  const toggleHandler = () => {
+    setEnable(!enable);
+  }
   useEffect(() => {
     const fetchData = async () => {
+      console.log(enable);
+      if (!enable)
+        return;
       const res = await getLight();
       setData((prev) => {
         const newData = JSON.parse(JSON.stringify(prev));
@@ -58,8 +65,8 @@ export function LightChart() {
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [enable]);
   return (
-    <Chart title={`Light (60 sec)/ ${count}`} lineOptions={lineOptions} data={data} />
+    <Chart title={`Light (60 sec)/ ${count}`} lineOptions={lineOptions} data={data} enable={enable} toggleHandler={toggleHandler} />
   );
 }

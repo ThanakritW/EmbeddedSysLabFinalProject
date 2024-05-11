@@ -36,18 +36,26 @@ const rawData = {
   ],
 };
 
-const FETCH_INTERVAL = 3000;
+const FETCH_INTERVAL = 60000;
 
 export function PassageChart() {
   const [data, setData] = useState(rawData);
+  const [count, setCount] = useState(0);
+  const [enable, setEnable] = useState(false);
+  const toggleHandler = () => {
+    setEnable(!enable);
+  };
   useEffect(() => {
     const fetchData = async () => {
+      if (!enable)
+        return;
       const res = await getPassage();
       setData((prev) => {
         const newData = JSON.parse(JSON.stringify(prev));
         newData.datasets[0].data = res.map((item) => item.value);
         return newData;
       });
+      setCount((count) => count + 1);
     };
     fetchData();
     const interval = setInterval(fetchData, FETCH_INTERVAL);
@@ -55,8 +63,10 @@ export function PassageChart() {
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [enable]);
   return (
-    <Chart title={"Count (60 minutes)"} lineOptions={lineOptions} data={data} />
+    <Chart title={`Count (60 minutes)/ ${count}`} lineOptions={lineOptions} data={data} enable={enable} toggleHandler={toggleHandler} />
   );
 }
+
+
